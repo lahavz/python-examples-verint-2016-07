@@ -1,7 +1,15 @@
-"""
-Write a program that randomizes a number
-and prints the sum total of its digits.
-For example if the number was: 2345
-The result should be: 14
-"""
+from random import randint
+
+print "Exercise # 3"
+
+num = randint(1, 10000)
+print "Number is %d" % (num)
+sum = int(0)
+
+while num > 0:
+    digit = num % 10
+    sum = sum + digit
+    num = num / 10
+
+print "Sum is %d" % (sum)
 
