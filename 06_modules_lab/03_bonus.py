@@ -1,13 +1,32 @@
-""" Write a program that searches current working directory
-for files larger than 1MB. Every time you find such a file print
-its name to the user.
+import sys
+import os
+import argparse
 
-- When the program finds a large file. It should ask the user
-  a message asking if she wants to delete it, and delete the
-  file if requested
+parser = argparse.ArgumentParser(description='Delete files higher than')
+parser.add_argument("Path", help="directory path")
+parser.add_argument("File_size", help="delete files bigger than size (in Bytes)")
 
-- Take threshold and path as command line arguments
+args = parser.parse_args()
 
-Bonus: Use argparse module to parse command line arguments
-"""
+
+
+for root, dirs, files in os.walk(sys.argv[1]):
+#for root, dirs, files in os.walk("C:\Users\lzeno\OneDrive\Code\Python Scripts\ToCode Course\Tasks\Models"):
+    for name in files:
+        if os.path.getsize(os.path.join(root,name)) >= int(sys.argv[2]):
+            print os.path.join(root,name) + " is bigger than " + sys.argv[2] + "Bytes Delete? (Y/N)"
+            answer = raw_input()
+            while True:
+                if answer == 'Y' or answer == 'y':
+                    os.remove(os.path.join(root,name))
+                    print os.path.join(root,name) + " Deleted"
+                    break
+                else:
+                    if answer == 'N' or answer == 'n':
+                        break
+                    else:
+                        print "Try Again"
+                        answer = raw_input()
+                        
+                
 
