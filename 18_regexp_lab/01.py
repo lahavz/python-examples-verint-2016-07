@@ -1,12 +1,19 @@
 """
-Write a program that reads data
-from property files.
-Each line in the file can either be:
-    An empty line
-    A comment line (Start with #)
-    A property line (of the form key = value)
-
-Write a program that takes a property file name and key
-as command line arguments and prints the requested value
+Receive key DB and key and if invalid return its value
 """
+
+import sys
+import re
+
+
+keyfile = "C:\Users\lzeno\OneDrive\Code\Python Scripts\ToCode Course\Tasks\Regex\db01.txt"
+key = 'number'
+
+
+with open(keyfile, "r") as s:
+    for line in s:
+        m = re.search(r'(\w+)\s*=\s*(\w+)',line)
+        if m is not None:
+            if m.group(1) == key:
+                print m.group(2)
 
